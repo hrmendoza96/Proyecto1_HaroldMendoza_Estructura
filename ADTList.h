@@ -2,7 +2,7 @@
 #include "Object.h"
 #include <iostream>
 
-class ADTList{
+class ADTList: public Object{
 protected:
       int tamano;
 public:

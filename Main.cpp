@@ -3,44 +3,84 @@
 #include "ADTList.h"
 #include "FSArrayList.h"
 #include "Person.h"
+#include "Empleado.h"
 #include "VSArrayList.h"
 
 using namespace std;
 
+void menu();
+
 int main(int argc, char const *argv[]) {
-    FSArrayList*  arreglo = new FSArrayList(4);
-    Person* p = new Person("Harold", 20);
-    arreglo->insert(p,0);
-    //cout << arreglo->get(0)->toString();
-    Person* p2 = new Person("Gaby",  21);
-    arreglo->insert(p2,1);
-    for (int i = 0; i < arreglo->size(); i++) {
-      cout << arreglo->get(i)->toString();
-    }
+    int capacidad=0;
+    cout << "Ingrese Capacidad Inicial para Lista de Empleados: ";
+    cin>> capacidad;
+    ADTList* ListaEmpleados = new VSArrayList(capacidad);
+    cout << "La lista de Empleados ha sido creada exitosamente con una capacidad de: " << ListaEmpleados->capacity()<< " (Capacidad puede ser incrementada)"<< endl;
+    cout << endl;
+    int opcion=0;
+    do {
+      menu();
+      cin >> opcion;
+      if(opcion==1){
+        //pedir datos
+        string nombre; int edad; double salario;
+        cout << "Ingrese el nombre del Empleado: ";
+        cin >> nombre;
+        cout << endl;
+        cout << "Ingrese la edad del Empleado: ";
+        cin >>  edad;
+        cout << endl;
+        cout << "Ingrese el salario del Empleado: ";
+        cin >>  salario;
+        cout << endl;
 
-    cout<< "First: " << arreglo->first()->toString();
-    cout<< "Last: " << arreglo->last()->toString();
+        int posicion;
+        cout << "Ingrese la posicion en que desea agregar al Empleado: ";
+        cin >>  posicion;
+        cout << endl;
 
-    cout << "Index of Object 'p' : " << arreglo->indexOf(p) << endl;
-    cout << "Index of Object 'p2' : " << arreglo->indexOf(p2) << endl;
+        //crear Empleado
+        if(ListaEmpleados->insert(new Empleado(nombre,edad,salario), posicion) ){
+          cout << "Empleado Ingresado Exitosamente" << endl<<endl;
+        }else{
+          cout << "No se ha podido ingresar al empleado"<<endl<<endl;
+        }
 
-    cout << "Capacity: " << arreglo->capacity()<< endl;
-    bool isEmpty=arreglo->isEmpty();
-    if(isEmpty==0){
-      cout << "Is Empty? = FALSE" << endl;
-    }else{
-      cout << "Is Empty? = TRUE" << endl;
-    }
-    bool isFull=arreglo->isFull();
-    if(isFull==0){
-      cout << "Is Full? = FALSE" << endl;
-    }else{
-      cout << "Is Full? = TRUE" << endl;
-    }
+        cout << "\033[2J\033[1;1H";
 
-    cout << "Removido "<<arreglo->remove(0)->toString();
+      }
+      if(opcion==2){
 
+      }
+      if(opcion==3){
+
+      }
+      if(opcion==4){
+
+      }
+      if(opcion==5){
+
+      }
+      if(opcion==6){
+
+      }
+      if(opcion==7){
+
+      }
+      if(opcion==8){
+        cout << "Hasta Pronto"<<endl;
+      }
+
+    } while(opcion!=8);
 
 
   return 0;
+}
+
+void menu(){
+  cout << "Bienvenido al Sistema para administrar el Sueldo de sus Empleados "<<endl;
+  cout << "1) Insertar Empleado"<<endl<<"2)Listar Empleado" << endl <<"3) Borrar Empleado"<<endl;
+  cout << "4)Calcular Salario Promedio"<<endl<<"5)Ver Salario Maximo"<<endl;
+  cout << "6) Ver Salario Minimo" <<endl<< "7)Dar Incremento por Inflacion"<<endl;
+  cout << "8)Salir"<<endl<<"Ingrese su opcion: ";
 }
