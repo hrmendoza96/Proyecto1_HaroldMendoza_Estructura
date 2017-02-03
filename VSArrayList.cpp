@@ -13,8 +13,8 @@ VSArrayList::VSArrayList(int current_capacity){
 
 }
 VSArrayList::VSArrayList(int current_capacity, int delta){
-
-
+  this->current_capacity=current_capacity;
+  this->delta=delta;
 }
 //Destructor
 VSArrayList::~VSArrayList(){
@@ -118,4 +118,15 @@ bool VSArrayList::isFull() const{
   }else{
     return false;
   }
+}
+
+
+//Object Heritage
+string VSArrayList::toString() const{
+  return "";
+
+}
+bool  VSArrayList::equals(Object*) const{
+  return false;
+
 }

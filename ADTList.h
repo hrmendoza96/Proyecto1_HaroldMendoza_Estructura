@@ -20,4 +20,8 @@ public:
      virtual bool isEmpty() const=0;
      virtual bool isFull() const=0;
 
+     //Object Heritage
+     virtual string toString() const;
+     virtual bool  equals(Object*) const;
+
 };

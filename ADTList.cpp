@@ -47,3 +47,14 @@ bool ADTList::isEmpty() const{
 bool ADTList::isFull() const{
   return false;
 }
+
+
+//Object Heritage
+string ADTList::toString() const{
+  return "";
+
+}
+bool  ADTList::equals(Object*) const{
+  return false;
+
+}

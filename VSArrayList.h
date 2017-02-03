@@ -24,5 +24,9 @@ class VSArrayList : public ADTList{
     virtual bool isEmpty() const;
     virtual bool isFull() const;
 
+    //Object Heritage
+    virtual string toString() const;
+    virtual bool  equals(Object*) const;
+
 
 };

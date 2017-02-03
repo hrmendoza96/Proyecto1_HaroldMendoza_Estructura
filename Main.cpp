@@ -21,8 +21,9 @@ int main(int argc, char const *argv[]) {
     do {
       menu();
       cin >> opcion;
-      if(opcion==1){
+      if(opcion==1){ //Insertar Empleado
         //pedir datos
+          cout << "\033[2J\033[1;1H"; //limpiar consola
         string nombre; int edad; double salario;
         cout << "Ingrese el nombre del Empleado: ";
         cin >> nombre;
@@ -39,6 +40,7 @@ int main(int argc, char const *argv[]) {
         cin >>  posicion;
         cout << endl;
 
+          cout << "\033[2J\033[1;1H";
         //crear Empleado
         if(ListaEmpleados->insert(new Empleado(nombre,edad,salario), posicion) ){
           cout << "Empleado Ingresado Exitosamente" << endl<<endl;
@@ -46,25 +48,31 @@ int main(int argc, char const *argv[]) {
           cout << "No se ha podido ingresar al empleado"<<endl<<endl;
         }
 
+      }
+      if(opcion==2){ //Listar Empleado
         cout << "\033[2J\033[1;1H";
+        cout << "Lista de Empleados: " << endl;
+        if(!ListaEmpleados->isEmpty()){
+          for (int i = 0; i < ListaEmpleados->size(); i++) {
+            cout<< i <<") "<< ListaEmpleados->get(i)->toString() << endl;
+          }
+        }else{
+          cout << "La Lista de Empleados esta Vacia"<< endl<<endl;
+        }
+      }
+      if(opcion==3){ //Borrar Empleado
 
       }
-      if(opcion==2){
+      if(opcion==4){ //Calcular Salario Promedio
 
       }
-      if(opcion==3){
+      if(opcion==5){ //Ver Salario Maximo
 
       }
-      if(opcion==4){
+      if(opcion==6){ //Ver Salario Minimo
 
       }
-      if(opcion==5){
-
-      }
-      if(opcion==6){
-
-      }
-      if(opcion==7){
+      if(opcion==7){  // Dar Incremento por Inflacion
 
       }
       if(opcion==8){
@@ -79,7 +87,7 @@ int main(int argc, char const *argv[]) {
 
 void menu(){
   cout << "Bienvenido al Sistema para administrar el Sueldo de sus Empleados "<<endl;
-  cout << "1) Insertar Empleado"<<endl<<"2)Listar Empleado" << endl <<"3) Borrar Empleado"<<endl;
+  cout << "1) Insertar Empleado"<<endl<<"2) Listar Empleado" << endl <<"3) Borrar Empleado"<<endl;
   cout << "4)Calcular Salario Promedio"<<endl<<"5)Ver Salario Maximo"<<endl;
   cout << "6) Ver Salario Minimo" <<endl<< "7)Dar Incremento por Inflacion"<<endl;
   cout << "8)Salir"<<endl<<"Ingrese su opcion: ";
