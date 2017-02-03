@@ -5,6 +5,7 @@
 
 VSArrayList::VSArrayList(int current_capacity){
   this-> current_capacity = current_capacity;
+  delta=current_capacity;
   array = new Object* [current_capacity];
   if(!array){
     cerr << "out of memory"  << endl; //cerr para tirar error por la consola
