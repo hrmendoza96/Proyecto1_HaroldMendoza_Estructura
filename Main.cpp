@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include "Object.h"
 #include "ADTList.h"
 #include "FSArrayList.h"
@@ -28,7 +29,9 @@ int main(int argc, char const *argv[]) {
         cout << "\033[2J\033[1;1H"; //limpiar consola
         string nombre; int edad; double salario;
         cout << "Ingrese el nombre del Empleado: ";
-        cin >> nombre;
+        cin.ignore();
+        getline(cin,nombre);
+        //cin >> nombre;
         cout << endl;
         cout << "Ingrese la edad del Empleado: ";
         cin >>  edad;
