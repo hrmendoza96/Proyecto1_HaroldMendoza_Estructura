@@ -111,6 +111,13 @@ int main(int argc, char const *argv[]) {
           }
 
           cout << "El salario maximo es: $"<<max << endl<<endl;
+
+            for (int i = 0; i < ListaEmpleados->size(); i++) {
+              if(dynamic_cast <Empleado*> (ListaEmpleados->get(i) )->getSalario()==max){
+                  cout<< i <<") "<< (ListaEmpleados->get(i) )->toString() << endl;
+              }
+            }
+
         }else{
           cout << "La Lista de Empleados esta Vacia"<< endl<<endl;
         }
@@ -134,7 +141,12 @@ int main(int argc, char const *argv[]) {
             }
 
           }
-          cout << "El salario maximo es: $"<<min << endl<<endl;
+          cout << "El salario minimo es: $"<<min << endl<<endl;
+          for (int i = 0; i < ListaEmpleados->size(); i++) {
+            if(dynamic_cast <Empleado*> (ListaEmpleados->get(i) )->getSalario()==min){
+                cout<< i <<") "<< (ListaEmpleados->get(i) )->toString() << endl;
+            }
+          }
         }else{
           cout << "La Lista de Empleados esta Vacia"<< endl<<endl;
         }
