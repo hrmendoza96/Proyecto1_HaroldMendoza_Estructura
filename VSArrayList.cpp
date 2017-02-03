@@ -56,11 +56,12 @@ void VSArrayList::resize(){
 
 Object* VSArrayList::remove(int p){
   Object* elemento = array[p];
-  //delete array[p];
   array[p] = NULL;
+  delete array[p];
   for (int i = p; i < tamano-1; i++) { //corre los elementos del arreglo
     array[i]=array[i+1];
   }
+  array[tamano-1]=NULL;
   delete array[tamano-1]; //elimina el ultimo elemento del arreglo que queda sobrante
   tamano--;
   return elemento;

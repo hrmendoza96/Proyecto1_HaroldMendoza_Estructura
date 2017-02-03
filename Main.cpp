@@ -16,12 +16,17 @@ int main(int argc, char const *argv[]) {
     cin>> capacidad;
     ADTList* ListaEmpleados = new VSArrayList(capacidad);
     cout << "La lista de Empleados ha sido creada exitosamente con una capacidad de: " << ListaEmpleados->capacity()<< " (Capacidad puede ser incrementada)"<< endl;
+    cout << "Capacity "<<ListaEmpleados->capacity()<<endl;
+    cout << "Size "<<ListaEmpleados->size()<<endl;
     cout << endl;
     int opcion=0;
     do {
       menu();
       cin >> opcion;
       if(opcion==1){ //Insertar Empleado
+        /**
+        *TODO: Validar
+        */
         //pedir datos
           cout << "\033[2J\033[1;1H"; //limpiar consola
         string nombre; int edad; double salario;
@@ -61,15 +66,76 @@ int main(int argc, char const *argv[]) {
         }
       }
       if(opcion==3){ //Borrar Empleado
+        cout << "\033[2J\033[1;1H";
+        cout << "Lista de Empleados: " << endl;
+        if(!ListaEmpleados->isEmpty()){
+          for (int i = 0; i < ListaEmpleados->size(); i++) {
+            cout<< i <<") "<< ListaEmpleados->get(i)->toString() << endl;
+          }
+          int numeroBorrar;
+          cout << "Escoger numero del empleado que desea Borrar de la Lista: ";
+          cin>> numeroBorrar;
+          cout <<endl;
+          if(numeroBorrar>=0 && numeroBorrar<ListaEmpleados->size()){
+            Empleado* empleadoBorrado = (Empleado*)ListaEmpleados->remove(numeroBorrar);
+            cout << "Se ha borrado a :"<<empleadoBorrado->toString()<<endl<<endl;
+          }else{
+            cout << "No existe esa posicion de empleado"<<endl<<endl;
+          }
+
+
+        }else{
+          cout << "La Lista de Empleados esta Vacia"<< endl<<endl;
+        }
+
 
       }
       if(opcion==4){ //Calcular Salario Promedio
-
+        cout << "\033[2J\033[1;1H";
+        double promedio=0;
+        if(!ListaEmpleados->isEmpty()){
+          for (int i = 0; i < ListaEmpleados->size(); i++) {
+            Empleado* empleado = (Empleado*) ListaEmpleados->get(i);
+            promedio+=empleado->getSalario();
+          }
+          promedio=promedio/ListaEmpleados->size();
+          cout << "El Promedio Salarial de los empleados es de: $" << promedio << endl<<endl;
+        }else{
+          cout << "La Lista de Empleados esta Vacia"<< endl<<endl;
+        }
       }
       if(opcion==5){ //Ver Salario Maximo
+        cout << "\033[2J\033[1;1H";
+        double max=0;
+        for (int i = 0; i < ListaEmpleados->size(); i++) {
+          if( (dynamic_cast <Empleado*> (ListaEmpleados->get(i))->getSalario() ) > max ){
+            max = dynamic_cast <Empleado*> (ListaEmpleados->get(i))->getSalario();
+          }
+        }
+
+        cout << "El salario maximo es: $"<<max << endl<<endl;
+
 
       }
       if(opcion==6){ //Ver Salario Minimo
+        cout << "\033[2J\033[1;1H";
+        double min=0;
+        int cont=0;
+        for (int i = 0; i < ListaEmpleados->size(); i++) {
+          if(cont==0 && min==0){
+            min = dynamic_cast <Empleado*> (ListaEmpleados->get(i))->getSalario();
+            cont++; //contador para permitir que este proceso solo se haga una vez
+
+          }else{
+            if( (dynamic_cast <Empleado*> (ListaEmpleados->get(i))->getSalario() ) < min ){
+              min = dynamic_cast <Empleado*> (ListaEmpleados->get(i))->getSalario();
+            }
+
+          }
+
+        }
+
+        cout << "El salario maximo es: $"<<min << endl<<endl;
 
       }
       if(opcion==7){  // Dar Incremento por Inflacion
@@ -88,7 +154,7 @@ int main(int argc, char const *argv[]) {
 void menu(){
   cout << "Bienvenido al Sistema para administrar el Sueldo de sus Empleados "<<endl;
   cout << "1) Insertar Empleado"<<endl<<"2) Listar Empleado" << endl <<"3) Borrar Empleado"<<endl;
-  cout << "4)Calcular Salario Promedio"<<endl<<"5)Ver Salario Maximo"<<endl;
-  cout << "6) Ver Salario Minimo" <<endl<< "7)Dar Incremento por Inflacion"<<endl;
-  cout << "8)Salir"<<endl<<"Ingrese su opcion: ";
+  cout << "4) Calcular Salario Promedio"<<endl<<"5) Ver Salario Maximo"<<endl;
+  cout << "6) Ver Salario Minimo" <<endl<< "7) Dar Incremento por Inflacion"<<endl;
+  cout << "8) Salir"<<endl<<"Ingrese su opcion: ";
 }

@@ -22,7 +22,7 @@ void Empleado::setInflacion(double inflacion){
 
 string Empleado::toString() const{
   stringstream ss;
-  ss << Person::toString() << "Salario: " << salario << "\n";
+  ss << Person::toString() << "Salario: $" << salario << "\n";
   return ss.str();
 }
 
