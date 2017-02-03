@@ -139,6 +139,21 @@ int main(int argc, char const *argv[]) {
 
       }
       if(opcion==7){  // Dar Incremento por Inflacion
+        cout << "\033[2J\033[1;1H";
+        double incremento=0;
+        cout << "Ingrese el porcentaje de incremento de inflacion que desea aplicar a los salarios de los empleados: ";
+        cin>> incremento;
+        incremento=incremento/100;
+        double salario=0;
+        for (int i = 0; i < ListaEmpleados->size(); i++) {
+          salario = dynamic_cast <Empleado*> (ListaEmpleados->get(i))->getSalario();
+          salario=(salario*incremento)+salario;
+          dynamic_cast <Empleado*> (ListaEmpleados->get(i))->setSalario(salario);
+        }
+
+        cout << "Se ha aplicado el incremento exitosamente!" << endl<<endl;
+
+
 
       }
       if(opcion==8){
